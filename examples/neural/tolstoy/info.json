@@ -1,0 +1,7 @@
+{
+	"username": "tolstoy",
+	"eth_address": "",
+	"type":"neural",
+	"email": "test@example.com",
+	"description": "Sample PPO Agent"
+}

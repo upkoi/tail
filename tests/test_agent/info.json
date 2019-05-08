@@ -1,0 +1,6 @@
+{
+	"username": "self_test",
+	"eth_address": "0x1937c5c515057553ccbd46d5866455ce66290284",
+	"email": "test@example.com",
+	"description": "Self Test Agent. This agent is used to diagnose environment issues."
+}

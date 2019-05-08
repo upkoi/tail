@@ -1,0 +1,41 @@
+[{
+	"name": "Small Empty Board",
+	"code": "small-empty",
+	"passing_score": 150,
+	"random_agents": 0,
+	"shared_config": {
+		"side_length": 10,
+		"num_seed_walls": 0,
+		"wall_growth_factor": 0
+	}
+}, {
+	"name": "Small Board with Walls",
+	"code": "small-walls",
+	"passing_score": 150,
+	"random_agents": 0,
+	"shared_config": {
+		"side_length": 7,
+		"num_seed_walls": 4,
+		"wall_growth_factor": 2
+	}
+}, {
+	"name": "Small Board with Walls and Random Agents",
+	"code": "small-walls-random-agents",
+	"passing_score": 400,
+	"random_agents": 2,
+	"shared_config": {
+		"side_length": 7,
+		"num_seed_walls": 3,
+		"wall_growth_factor": 2
+	}
+}, {
+	"name": "Medium Board with Walls and Random Agents",
+	"code": "medium-walls-random-agents",
+	"passing_score": 750,
+	"random_agents": 5,
+	"shared_config": {
+		"side_length": 15,
+		"num_seed_walls": 4,
+		"wall_growth_factor": 4
+	}
+}]
