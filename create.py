@@ -32,16 +32,11 @@ parser.add_argument("--ls", action='store_true',required=False, help="list avail
 args = parser.parse_args()
 
 try:
-    from ethereum.utils import check_checksum
-except:
-    fail_check('Ethereum API not installed. Please install this library with pip install ethereum.')
-
-try:
     from profanity import profanity
 except:
     fail_check('Profanity library missing. Please install this library with pip install profanity.')
 
-from qualification.core import check_name,copytree
+from qualification.core import check_name,copytree,sanity_check_address
 
 templates = []
 template_info = {}
@@ -120,12 +115,12 @@ while not ethereum_input_complete:
         ethereum_input_complete = True
         break
 
-    appears_valid = check_checksum(ethereum_address)
+    appears_valid = sanity_check_address(ethereum_address)
 
     if not appears_valid:
-        warn_check('Ethereum address did not pass checksum validation. Please supply a valid ethereum address or remove the address entirely.')
+        warn_check('Ethereum address did not pass validation. Please supply a valid ethereum address (matching ^0x[a-fA-F0-9]{40}$) or remove the address entirely.')
     else:
-        pass_check('Agent Ethereum Address [%s] Passes Checksum Validation' % ethereum_address)
+        pass_check('Agent Ethereum Address [%s] Passes Format Validation' % ethereum_address)
         ethereum_input_complete = True
 
 try:
@@ -135,7 +130,7 @@ except OSError:
 
 copytree(template_path, name)
 
-info = template_info[template_name]
+info = template_info[template]
 info['username'] = name
 info['eth_address'] = ethereum_address
 
@@ -145,7 +140,7 @@ with open(os.path.join(name,'info.json'), 'w') as outfile:
 
 pass_check('Agent %s Created (/%s)' % (name,name))
 
-print('-----------------------------------------------------')
+print('------------------------------------------------------------')
 
 if info['type'] == 'neural':
     print('Nice! The next step is train your example neural network agent.')
@@ -162,7 +157,7 @@ if info['type'] == 'conventional':
 if info['type'] == 'foundation':
     print('The foundation agent you selected is a great blank slate. See comments in handler.py file for next steps.')
 
-print('-----------------------------------------------------')
+print('------------------------------------------------------------')
 
 print('Tip: Check your progress at any time by running the qualification tool.')
 print('(Ex: python qualify.py --agent %s --visualize)' % name)

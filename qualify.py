@@ -45,16 +45,10 @@ parser.add_argument("--verify", required=False, default=None, help="specify a ta
 
 args = parser.parse_args()
 
-
 try:
     import docker
 except:
     fail_check('Docker / pydocker not installed. Please install docker (https://docs.docker.com/install/) and then install the python docker API with pip install docker.')
-
-try:
-    from ethereum.utils import check_checksum
-except:
-    fail_check('Ethereum API not installed. Please install this library with pip install ethereum.')
 
 try:
     import gym
@@ -77,7 +71,7 @@ except:
     fail_check('tqdm library missing. Please install this library with pip install tqdm.')
 
 
-from qualification.core import check_name, copytree
+from qualification.core import check_name, copytree, sanity_check_address
 
 SELF_TEST_AGENT = os.path.join('tests','test_agent')
 
@@ -160,12 +154,12 @@ def check_agent_meta(coordinator):
     if address == None or address == '':
         warn_check('Ethereum address is missing. Your agent will not qualify for a prize. To qualify for prizes, please update your agent to include a valid ethereum address.')
     else:
-        appears_valid = check_checksum(address)
+        appears_valid = sanity_check_address(address)
 
         if not appears_valid:
-            fail_check('Ethereum address did not pass checksum validation. Please supply a valid ethereum address or remove the address entirely.')
+            fail_check('Ethereum address did not pass the format check. Please supply a valid ethereum address matching ^0x[a-fA-F0-9]{40}$ or remove the address entirely.')
         else:
-            pass_check('Agent Ethereum Address [%s] Passes Checksum Validation' % address)
+            pass_check('Agent Ethereum Address [%s] Passes Format Validation' % address)
 
     if status['pic'] == None or status['pic'] == '':
         warn_check('No usable e-mail address was provided. Your bot will not feature a gravatar. Provide an e-mail address to load a gravatar during the competition.')

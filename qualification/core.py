@@ -2,6 +2,7 @@ import os
 import random
 import string
 import shutil
+import re
 from profanity import profanity
 
 # Reserved names that will fail the name check
@@ -17,7 +18,7 @@ def check_name(name):
     if len(name) > 12:
         return False, 'Agent name too long. Please select an agent name that is between two and twelve characters long.'
 
-    if name.translate({ord(c): None for c in string.whitespace}) != name:
+    if ''.join(name.split()) != name:
         return False, 'Agent name must not contain whitespace or newline characters.'
 
     if name.lower() != name:
@@ -41,3 +42,6 @@ def copytree(src, dst, symlinks=False, ignore=None):
             shutil.copytree(s, d, symlinks, ignore)
         else:
             shutil.copy2(s, d)
+
+def sanity_check_address(address):
+    return re.match(r"^0x[a-fA-F0-9]{40}$",address)

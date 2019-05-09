@@ -32,18 +32,43 @@ Initial submissions usually can be created in 15-30 minutes by following these i
 
 We've open-sourced / MIT licensed the core execution engine, [SkyPond](https://github.com/upkoi/skypond), to allow transparency into the main code that is running the game.
 
-### 0 - Installation
+### 0 - Prerequisites
+The execution environment requires **python 3** and a docker installation. It works best on Linux or OS X (due to a dependency on [OpenAI Gym](https://github.com/openai/gym]).
+
+Note: Python 2 support is not currently planned.  
+
+Check your python3 installation with:
+```
+python3 -V
+```
+
+Verify your docker installation with:
+```
+docker run hello-world
+```
+
+Resources
+- [Installing Python3 on OS X](https://wsvincent.com/install-python3-mac/)
+- [Docker Installation](https://docs.docker.com/install/)
+
+### 1 - Installation
 Pull down this repository and run the setup tool to get started. This will install all dependencies, including SkyPond.
 
 Example:
 ```
 git clone https://github.com/upkoi/tail
 cd tail
-sudo python setup.py install
+sudo python3 setup.py install
 
 ```
 
-### 1 - Create a New Project & Train a Model
+Optionally, run a self-test of the execution environment after installation with:
+
+```
+python3 qualify.py --self-test
+```
+
+### 2 - Create a New Project & Train a Model
 Use the included create.py script to copy an existing example. All examples are MIT licensed and are provided as examples / inspiration for customization.
 
 We offer a starting point for reinforcement learning agents, _tolstoy_. This is an agent that learns how to find and hold on to keys but doesn't fight often. This agent can be trained in about 20-30 minutes to pass the qualification criteria and is a starting point for modification.
@@ -51,7 +76,7 @@ We offer a starting point for reinforcement learning agents, _tolstoy_. This is 
 Use the create.py script to create a variant of this model...
 
 ```
-python create.py --template neural/tolstoy
+python3 create.py --template neural/tolstoy
 ```
 
 Follow the prompts to add a name and an optional Ethereum key for your submission.
@@ -60,7 +85,7 @@ Once created, cd into the directory and run the included training file.
 
 ```
 cd yolo
-python train.py
+python3 train.py
 ```
 
 <div align="center">
@@ -73,12 +98,12 @@ The training script will intermittently test your agent on a larger board with s
 
 This example model uses a deep convolutional neural network and should reach an (okay) average reward of around _9_ in about 10-20 minutes. Feel free to press CTRL+C to stop training at any time after this point.
 
-### 2 - Validation & Packaging
+### 3 - Validation & Packaging
 This sample neural network agent includes everything you need to compete, including the required _handler.py_ file that is used to communicate with your submission. An important part of the competition is self-qualification - validating that your submission is ready for battle and doesn't contain significant errors. To self-qualify your submission at any time, run the qualification tool:
 
 ```
 mkdir yolo-ready
-python qualify.py --agent ./yolo --output ./yolo-ready
+python3 qualify.py --agent ./yolo --output ./yolo-ready
 ```
 
 <div align="center">
@@ -97,18 +122,18 @@ If successful (and your submission didn't fail any of the tests) the packaging t
 
 A quick note here: this process is not wholly deterministic yet. Feel free to give failing agents another shot.
 
-### 3 - Deployment
+### 4 - Deployment
 Copy the contents of the /output folder onto a floppy disk (or specify your drive path with --output in the first place). Be careful not to copy the folder itself. The root folder on the disk should at least contain the entry.py file and the qualification.dat file and typically also contains an info.json file as well as others.
 
 You can validate your packaged submission on your target disk by using **--verify**. Ex:
 
 ```
-python qualify.py --verify /media/rob/disk
+python3 qualify.py --verify /media/rob/disk
 ```
 
 __Important Note__: After qualification do not edit any part of your agent, including the name! We hash parts of the agent in the qualification process (subject to change) and changing your agent after qualification might cause it to fail.
 
-### 4 - Yeah!
+### 5 - Yeah!
 At this point, you know how to create, validate, and package submissions. __We encourage you to check out the other samples and use one as a starting point for creating your own agent.__
 
 The final step is to bring your agent to the tournament. See [midnightfight.ai](midnightfight.ai) for upcoming battles!

@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 def pass_check(check):
     print('\033[92m' + '[ ✓ ] ' + check + '\033[0m')
 
