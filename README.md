@@ -69,7 +69,7 @@ python3 qualify.py --self-test
 ```
 
 ### 2 - Create a New Project & Train a Model
-Use the included create.py script to copy an existing example. All examples are MIT licensed and are provided as examples / inspiration for customization.
+Use the included create.py script to copy an existing example. All examples are MIT licensed and are provided as inspiration and starting points.
 
 We offer a starting point for reinforcement learning agents, _tolstoy_. This is an agent that learns how to find and hold on to keys but doesn't fight often. This agent can be trained in about 20-30 minutes to pass the qualification criteria and is a starting point for modification.
 
