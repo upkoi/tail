@@ -12,15 +12,15 @@ Use our self-qualification tool to verify your submission can run on our environ
 
 * [Game Details](#game-details)
 * [Quick Start](#quick-start)
-  * [Prerequisites](#0-prerequisites)
-  * [Installation](#1-installation)
-  * [Agent Creation](#2-agent-creation)
-  * [Testing Locally](#3-testing-locally)
-  * [Deployment](#4-deployment)
+  * [Prerequisites](#0---prerequisites)
+  * [Installation](#1---installation)
+  * [Agent Creation](#2---agent-creation)
+  * [Testing Locally](#3---testing-locally)
+  * [Deployment](#4---deployment)
 * [Important Limitations](#important-limitations)
-* [Rules & Current Game Parameters](#rules-current-game-parameters)
-* [Additional Technical Details](#submission-overview)
-* [Questions & Answers](#questions-answers)
+* [Rules & Current Game Parameters](#rules--current-game-parameters)
+* [Additional Technical Details](#additional-technical-details)
+* [Questions & Answers](#questions--answers)
 * [Acknowledgments](#acknowledgments)
 
 ## Game Details
