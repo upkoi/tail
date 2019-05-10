@@ -107,7 +107,7 @@ def full_evaluation(model,visualize=False,evaluation_opponents=3,rounds=1):
             cumulative_reward += reward
 
             if visualize:
-                env.render()
+                env.render(label='\33[90mLegend: K = Key, 1 = Current Agent, [2-8] = Practice Opponents\033[0m')
 
         meta = env.get_agent_meta(0)
         pickups += meta['pickups']
@@ -121,12 +121,12 @@ def display_training_summary(average_return_per_episode,average_frames_per_episo
     fps_display = "{:,}".format(round(fps))
     latest_average_return = round(average_return_per_episode[-1],2)
     latest_average_frames = average_frames_per_episode[-1]
-    return_lines = sparklines(average_return_per_episode[-100:],num_lines=RETURN_GRAPH_HEIGHT)
+    return_lines = sparklines(average_return_per_episode[-80:],num_lines=RETURN_GRAPH_HEIGHT)
 
     if CLEAR_ON_LOG:
         os.system('cls' if os.name=='nt' else 'clear')
 
-    print('%s Frames (Session) | %s FPS | \33[7m %.2f Average Return Per Episode \033[0m | %i Average Frames Per Episode' % (total_frames_display, fps_display, latest_average_return, latest_average_frames))
+    print('%s Frames | %s FPS | \33[7m %.2f Avg Episode Return \033[0m | %i Avg Frames / Episode' % (total_frames_display, fps_display, latest_average_return, latest_average_frames))
 
     print('\33[90m')
     print('Average Return')
