@@ -143,7 +143,10 @@ This will:
 
 If successful (and your submission didn't fail any of the tests) the packaging tool will copy your files into a new folder specified by **--output**.
 
-A quick note here: this process is not wholly deterministic yet. Feel free to give failing agents another shot.
+Additional Notes:
+
+* Use --visualize to render agent progress during qualification. This will slow down the qualification process by a small amount.
+* This process is not entirely deterministic yet. Feel free to give marginally failing agents another shot.
 
 ### 4 - Deployment
 Copy the contents of the /output folder onto a floppy disk (or specify your drive path with --output in the first place). Be careful not to copy the folder itself. The root folder on the disk should at least contain the entry.py file and the qualification.dat file and typically also contains an info.json file as well as others.
