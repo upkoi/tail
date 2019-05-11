@@ -67,8 +67,9 @@ docker run hello-world
 ```
 
 Resources
-- [Installing Python3 on OS X](https://wsvincent.com/install-python3-mac/)
-- [Docker Installation](https://docs.docker.com/install/)
+- [OS X Prerequisite Guide](docs/prerequisites/osx.md)
+- [Alternative Guide to Installing Python3 on OS X](https://wsvincent.com/install-python3-mac/)
+- [Latest Docker Installation Instructions](https://docs.docker.com/install/)
 
 ### 1 - Installation
 
