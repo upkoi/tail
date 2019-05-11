@@ -48,7 +48,11 @@ Initial submissions usually can be created in 15-30 minutes by following these i
 We've open-sourced / MIT licensed the core execution engine, [SkyPond](https://github.com/upkoi/skypond), to allow transparency into the main code that is running the game.
 
 ### 0 - Prerequisites
-The execution environment requires **python 3** and a docker installation. It works best on Linux or OS X (due to a dependency on [OpenAI Gym](https://github.com/openai/gym).
+* Docker
+* Python 3.6
+* Linux or OS X
+
+The execution environment requires **python 3** (python _3.6 or above_ is strongly suggested for installation simplicity) and a docker installation. It works best on Linux or OS X (due to a dependency on [OpenAI Gym](https://github.com/openai/gym)).
 
 Note: Python 2 support is not currently planned.  
 
@@ -67,21 +71,24 @@ Resources
 - [Docker Installation](https://docs.docker.com/install/)
 
 ### 1 - Installation
-Pull down this repository and run the setup tool to get started. This will install all dependencies, including SkyPond.
+
+Pull down this repository and run the included setup tool to get started. This will install all dependencies, including SkyPond.
 
 Example:
 ```
 git clone https://github.com/upkoi/tail
 cd tail
-sudo python3 setup.py install
+python3 setup.py install --user
 
 ```
 
 Optionally, run a self-test of the execution environment after installation with:
 
 ```
-python3 qualify.py --self-test
+python3 qualify.py --self-test --unrestrict-networking
 ```
+
+_Note: The first time the qualification tool is run it will need to pull down the latest execution environment docker image. This may take several minutes._
 
 ### 2 - Agent Creation
 Use the included create.py script to copy an existing example. All examples are MIT licensed and are provided as inspiration and starting points.
