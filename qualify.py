@@ -137,6 +137,23 @@ def validate_agent_size(directory):
 def get_verification_path(directory):
     return os.path.join(directory,'qualification.dat')
 
+def check_pull_image(coordinator):
+    print('Verifying Latest Host Image...')
+
+    has_image = coordinator.has_host_image()
+
+    if has_image:
+        pass_check('Latest Host Image Found')
+    else:
+        print('Latest Host Image Not Found, Pulling...')
+        print('(This process might take a few minutes)')
+
+        try:
+            coordinator.pull_host_image()
+            pass_check('Latest Host Image Obtained')
+        except:
+            fail_check('Failed to Obtain Host Image. Check Network Connection & Try Again.')
+
 def check_agent_meta(coordinator):
     status = coordinator.get_agent_meta(0)
 
@@ -287,6 +304,7 @@ if args.self_test:
         warn_check('Network Restrictions Relaxed - Environment Has Network Connectivity (Unlike Competition Environment)')
         coordinator.restrict_network = False
 
+    check_pull_image(coordinator)
 
     file_path = os.path.join(SELF_TEST_AGENT,'handler.py')
     exists = os.path.isfile(file_path)
@@ -296,7 +314,7 @@ if args.self_test:
 
     with tempfile.TemporaryDirectory() as temp_path:
         try:
-            print('Trying To Add Isolated Agent (This May Take a Few Seconds)...')
+            print('Trying To Add Isolated Agent (This May Take a Few Seconds).')
             coordinator.add_isolated_agent(SELF_TEST_AGENT,staging_path=temp_path)
         except:
             fail_check('Failed to add agent. Check your docker configuration or try --unrestrict-networking')
@@ -348,6 +366,8 @@ if args.verify:
     print('Starting Game Execution Environment for Verification...')
     coordinator = MultiAgentCoordinator('four_keys',gym_compatibility=False)
 
+    check_pull_image(coordinator)
+
     print('[TAIL] Verifying Agent Prior to Load...')
     validate_agent_is_directory(args.verify)
     validate_agent_size(args.verify)
@@ -378,6 +398,8 @@ with tempfile.TemporaryDirectory() as temp_path:
 
     print('Starting Game Execution Environment...')
     coordinator = MultiAgentCoordinator('four_keys',gym_compatibility=False)
+
+    check_pull_image(coordinator)
 
     if args.unrestrict_networking:
         warn_check('Network Restrictions Relaxed. Environment Has Network Connectivity (Unlike Competition)')

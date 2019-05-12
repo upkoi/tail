@@ -144,7 +144,7 @@ print('------------------------------------------------------------')
 
 if info['type'] == 'neural':
     print('Nice! The next step is train your example neural network agent.')
-    print('cd %s; python train.py' % name)
+    print('cd %s; python3 train.py' % name)
 
 if info['type'] == 'conventional/random':
     print('Your random agent is a good starting point but will need some modification to qualify.')
@@ -152,7 +152,7 @@ if info['type'] == 'conventional/random':
 if info['type'] == 'conventional':
     print('The conventional agent you selected is a good starting point.')
     print('Use the built-in visualization feature in this example to quickly evaluate changes without re-qualifying.')
-    print('python %s/handler.py --test' % name)
+    print('python3 %s/handler.py --test' % name)
 
 if info['type'] == 'foundation':
     print('The foundation agent you selected is a great blank slate. See comments in handler.py file for next steps.')
@@ -160,4 +160,4 @@ if info['type'] == 'foundation':
 print('------------------------------------------------------------')
 
 print('Tip: Check your progress at any time by running the qualification tool.')
-print('(Ex: python qualify.py --agent %s --visualize)' % name)
+print('(Ex: python3 qualify.py --agent %s --visualize)' % name)
