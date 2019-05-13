@@ -15,9 +15,10 @@ Install Python 3 using:
 
 ```
 brew install python3
+open /Applications/Docker.app
 ```
 
-Verify the installation afterwards using:
+Wait for docker to start. Verify the installation afterwards using:
 
 ```
 python3 -V

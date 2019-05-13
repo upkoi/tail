@@ -66,6 +66,12 @@ Verify your docker installation with:
 docker run hello-world
 ```
 
+#### OS X: Add /var/folders to whitelist [Required]
+Add /var/folders to the "File Sharing" whitelist in docker preferences. This is required so docker can access the temporary directory created by the qualification tool on OS X. If you have a custom temporary directory set, use that instead. Veriy using _echo $TMPDIR_.
+
+#### Linux: Verify Non-Root Docker Access
+Make sure you can run docker as a non-root user. See [post-installation instructions](https://docs.docker.com/install/linux/linux-postinstall/) for more information. If not, the qualification tool will likely fail to run.
+
 Resources
 - [OS X Prerequisite Guide](docs/prerequisites/osx.md)
 - [Alternative Guide to Installing Python3 on OS X](https://wsvincent.com/install-python3-mac/)
@@ -82,6 +88,16 @@ cd tail
 python3 setup.py install --user
 
 ```
+
+The PyTorch dependency is used for the example training script. If you have trouble installing PyTorch through the automated install script try installing it manually with...
+
+```
+pip3 install torch
+```
+
+...and then running the setup script above.
+
+#### Post-Installation Setup
 
 Optionally, run a self-test of the execution environment after installation with:
 
@@ -110,6 +126,10 @@ Once created, cd into the directory and run the included training file.
 cd yolo
 python3 train.py
 ```
+
+Notes:
+* If you run into issues on OS X with PyTorch related to libshm or libomp try _brew install libomp_
+* The training tool might not render the return graph or visualization correctly on some terminal configurations on OS X. We're working on it.
 
 <div align="center">
   <img src="docs/images/train.gif"><br><br>
