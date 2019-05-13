@@ -89,13 +89,13 @@ python3 setup.py install --user
 
 ```
 
-The PyTorch dependency is used for the example training script. If you have trouble installing PyTorch through the automated install script try installing it manually with...
+The PyTorch dependency is used for the example training script. If you have trouble installing PyTorch through the automated install try installing it manually with...
 
 ```
-pip3 install torch
+pip3 install torch==1.0.1
 ```
 
-...and then running the setup script above.
+...and then running the setup script above. Note that PyTorch version 1.0.1 is required to line up with the execution environment.
 
 #### Post-Installation Setup
 

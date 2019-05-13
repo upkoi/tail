@@ -143,7 +143,7 @@ pass_check('Agent %s Created (/%s)' % (name,name))
 print('------------------------------------------------------------')
 
 if info['type'] == 'neural':
-    print('Nice! The next step is train your example neural network agent.')
+    print('Nice! The next step is to train your example neural network agent.')
     print('cd %s; python3 train.py' % name)
 
 if info['type'] == 'conventional/random':
