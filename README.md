@@ -79,7 +79,7 @@ Resources
 
 ### 1 - Installation
 
-Pull down this repository and run the included setup tool to get started. This will install all dependencies, including SkyPond.
+Pull down this repository and run the included setup tool to get started. This will install all dependencies,  including SkyPond.
 
 Example:
 ```
@@ -182,7 +182,7 @@ __Important Note__: After qualification do not edit any part of your agent, incl
 ### 5 - Yeah!
 At this point, you know how to create, validate, and package submissions. __We encourage you to check out the other samples and use one as a starting point for creating your own agent.__
 
-The final step is to bring your agent to the tournament. See [midnightfight.ai](https://www.midnightfight.ai) for upcoming battles!
+The final step is to bring your agent to the tournament. Competitions are currently private. Please e-mail rob@upkoi.com to enter. We're opening up competition to the public soon - check [midnightfight.ai](https://www.midnightfight.ai) for availability.
 
 ### Get Some Hardware
 A modern floppy disk drive and set of two or more floppy disks are recommended. Here is a link to the same hardware used in the competition itself:
