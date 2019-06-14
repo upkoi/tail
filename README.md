@@ -76,6 +76,8 @@ Resources
 - [OS X Prerequisite Guide](docs/prerequisites/osx.md)
 - [Alternative Guide to Installing Python3 on OS X](https://wsvincent.com/install-python3-mac/)
 - [Latest Docker Installation Instructions](https://docs.docker.com/install/)
+- [Setting up docker and using WSL](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
+- - Do not follow the directions about changing the root mount
 
 ### 1 - Installation
 
@@ -104,8 +106,17 @@ Optionally, run a self-test of the execution environment after installation with
 ```
 python3 qualify.py --self-test --unrestrict-networking
 ```
+For Windows you'll want to specify the stage-path otherwise there may be issues accessing /tmp
+
+```
+
+python3 qualify.py --self-test --unrestrict-networking --stage-path ./stage
+
+```
 
 _Note: The first time the qualification tool is run it will need to pull down the latest execution environment docker image. This may take several minutes._
+
+
 
 ### 2 - Agent Creation
 Use the included create.py script to copy an existing example. All examples are MIT licensed and are provided as inspiration and starting points.
