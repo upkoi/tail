@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from flask import Flask, request, jsonify
 from skypond.games.four_keys.four_keys_actions import FourKeysActions

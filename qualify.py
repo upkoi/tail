@@ -42,6 +42,7 @@ parser.add_argument("--round-ls", required=False, action='store_true', help="lis
 parser.add_argument("--use-accumulating-opponents", required=False, action='store_true', help="controls random action opponent drop behavior (set to true to have random agents hold keys)")
 parser.add_argument("--output", required=False, default=None, help="specify a target path to write the qualified submission")
 parser.add_argument("--verify", required=False, default=None, help="specify a target path to a qualified submission to verify it would be accepted. Includes checking files, running agent, and verifying qualification token.")
+parser.add_argument("--stage-path", required=False, default=None, help="specify a target staging path name for qualification. This name will be postfixed with the number of the contained agent.")
 
 args = parser.parse_args()
 
@@ -199,12 +200,13 @@ def load_qualification_config(game):
 
     return qualification_rounds
 
+
 def qualify(coordinator,current_round,agent_path,cutoff=1000,trials=15,visualize=False,visualization_delay=False):
 
     coordinator.shared_state_initialization = current_round['shared_config']
 
     with tempfile.TemporaryDirectory() as temp_path:
-
+        
         wins = 0
         score = current_round['passing_score']
 
@@ -217,6 +219,8 @@ def qualify(coordinator,current_round,agent_path,cutoff=1000,trials=15,visualize
 
             try:
                 # Reload agent without reloading docker instance
+                if(args.stage_path):
+                    temp_path = os.path.abspath(args.stage_path)
                 coordinator.add_isolated_agent(args.agent,staging_path=temp_path,reuse_loaded_instance=True)
             except:
                 fail_check('Failed to add agent. Check handler for syntax errors. Also, check your docker configuration or try --unrestrict-networking')
@@ -315,6 +319,11 @@ if args.self_test:
     with tempfile.TemporaryDirectory() as temp_path:
         try:
             print('Trying To Add Isolated Agent (This May Take a Few Seconds).')
+            coordinator.debug_messages = True
+            if(args.stage_path):
+                temp_path = os.path.abspath(args.stage_path)
+            print(f'Staging to {temp_path}')
+
             coordinator.add_isolated_agent(SELF_TEST_AGENT,staging_path=temp_path)
         except:
             fail_check('Failed to add agent. Check your docker configuration or try --unrestrict-networking')
@@ -378,6 +387,8 @@ if args.verify:
     print('[TAIL] Launching Agent for Verification (This May Take a Few Seconds)...')
     with tempfile.TemporaryDirectory() as temp_path:
         try:
+            if(args.stage_path):
+                temp_path = os.path.abspath(args.stage_path)
             agent = coordinator.add_isolated_agent(args.verify,staging_path=temp_path)
         except:
             fail_check('Failed to add agent. Check your docker configuration or try --unrestrict-networking')
@@ -414,6 +425,8 @@ with tempfile.TemporaryDirectory() as temp_path:
 
     print('Launching Agent (This May Take a Few Seconds)...')
     try:
+        if(args.stage_path):
+                temp_path = os.path.abspath(args.stage_path)
         agent = coordinator.add_isolated_agent(args.agent,staging_path=temp_path)
     except:
         fail_check('Failed to add agent. Check handler for syntax errors and check your docker configuration. If problem persists try --unrestrict-networking')
