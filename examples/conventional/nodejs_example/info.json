@@ -1,0 +1,7 @@
+{
+	"username": "random",
+	"eth_address": "",
+	"type":"conventional/random",
+	"email": "test@example.com",
+	"description": "Sample Random Agent"
+}
